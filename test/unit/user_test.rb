@@ -56,9 +56,13 @@ require 'test_helper'
 	end
 	
 	test "that creating friendships on a user works" do
-		users(:brandon).friends << users(:mike)
-		users(:brandon).friends.reload
-		assert users(:brandon).friends.include?(users(:brandon))
+		users(:brandon).pending_friends << users(:mike)
+		users(:brandon).pending_friends.reload
+		assert users(:brandon).pending_friends.include?(users(:mike))
+  end
+
+  test "that calling to_param on a user returns the profile_name" do
+  	assert_equal "bcato", users(:brandon).to_param
   end
 end
 
